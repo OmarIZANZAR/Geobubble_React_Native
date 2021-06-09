@@ -1,21 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import React, { useEffect } from 'react';
+import Store from './state/store';
+import { Provider } from 'react-redux';
+import { NavigationContainer }  from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import * as Notifications from 'expo-notifications';
+
+import { Home, Settings } from './app/screens';
+import { AlertModal } from './app/components';
+
+import { setupNotifications } from './functions/notification';
+import { setupLocation } from './functions/location';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+
+const Tab = createMaterialTopTabNavigator();
 
 export default function App() {
+
+  useEffect(() => {
+    setupNotifications()
+    setupLocation()    
+  }, [])
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Provider store={Store}>
+
+        <AlertModal />
+        <Tab.Navigator initialRouteName='Home'
+          sceneContainerStyle={{ backgroundColor: '#fff' }}
+          tabBar={() => <></>}
+        >
+          <Tab.Screen name='Settings' component={Settings} />
+          <Tab.Screen name='Home' component={Home} />
+        </Tab.Navigator>
+
+      </Provider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
