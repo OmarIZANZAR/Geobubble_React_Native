@@ -25,7 +25,6 @@ const RadarScreen = () => {
             accuracy: 6,
             timeInterval: 1000,
         }, location => {
-            // console.log(location)
             dispatch({ 
                 type: Actions.SET_CURRENT_LOCATION, 
                 payload: { currentLocation: location }
@@ -38,28 +37,11 @@ const RadarScreen = () => {
         })
 
         socket.on('location-change', data => {
-            console.log("data recieved ", ID)
-            // const found = locations.find( loc => loc.id == data.id)
-
-            // console.log(found)
+            console.log("DATA RECIEVED FROM: ", ID)
 
             setLocations([ ...locations, data ])
 
-            // if( found ){
-            //     console.log("FOUND")
-            //     // const ls = locations
-            //     // ls.forEach( loc => {
-            //     //     if(loc.id === data.id) loc.location = data.location
-            //     // })
-            //     // setLocations( ls )
-            // } else {
-            //     console.log("NOT FOUND")
-            //     setLocations([ ...locations, data ])
-            //     console.log(locations)
-            // }
         })
-
-
     }, [])
 
     return (
@@ -71,7 +53,11 @@ const RadarScreen = () => {
             </View>
             <View style={styles.screen}>
                 {locations.map((location, i) => ( 
-                    <Dot location={location} origine={currentLocation} key={i} />
+                    <Dot 
+                        location={location} 
+                        origine={currentLocation}
+                        key={i} 
+                    />
                 ))}
             </View>
         </View>
@@ -83,18 +69,17 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         height: 360,
         width: 360,
-        // position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center',
         // backgroundColor: '#ffd9d9',
     },
 
     screen: {
-        // backgroundColor: '#f882',
         position: 'absolute',
         flex: 1,
         width: '100%',
         height: '100%',        
+        // backgroundColor: '#f882',
     },
 
     radarContainer: {

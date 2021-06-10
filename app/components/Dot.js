@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
 import { 
     Animated,
     View,
@@ -8,7 +9,9 @@ import {
     UIManager,
 } from "react-native";
 
+import { Actions } from '../../state'
 import { getDistance } from 'geolib'
+import { fireNotification } from '../../functions/notification'
 
 if (
   Platform.OS === "android" &&
@@ -18,10 +21,13 @@ if (
 }
 
 const Dot = ({ location, origine }) => {
-  const [position, setPosition] = useState({ x: 180-15 , y: 180-15 })
+  const [position, setPosition] = useState(null)
+  const { modal } = useSelector( state => state )
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if( !origine?.coords ) return
+    if( !origine?.coords || !location?.location ) return
+
     const R = getDistance(
       { 
         latitude: location.location.coords.latitude, 
@@ -59,32 +65,48 @@ const Dot = ({ location, origine }) => {
     )
 
     const MAX_DISTANCE = 10
+    const MIN_DISTANCE = 2
     const SCREEN_RADIUS = 180
     const RATIO = MAX_DISTANCE / SCREEN_RADIUS // m/px
 
-    if( true ) {
+    if( R < MAX_DISTANCE || true ) {
       let x, y;
 
       let dxp = Math.round( dx / RATIO )
       let dyp = Math.round( dy / RATIO )
       if( location.location.coords.longitude > origine.coords.longitude ) {
         // he is in my right
-        x = 180 + dxp
+        x = 180 - 15 + dxp
       } else {
         // he is in my left
-        x = 180 - dxp
+        x = 180 - 15 - dxp
       }
 
       if( location.location.coords.latitude > origine.coords.latitude ) {
         // he is in my north
-        y = 180 + dyp
+        y = 180 - 15 + dyp
       } else {
         // he is in my south
-        y = 180 - dyp
+        y = 180 - 15 - dyp
       }
 
       LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
       setPosition({ x: x , y: y })
+    }
+
+    if( R < MIN_DISTANCE && false ) {
+      if( !modal.isVisible ){
+        ( async () => {
+
+          dispatch({
+              type: Actions.OPEN_MODAL,
+              payload: { activeType: 'distance' }
+          })
+
+          await fireNotification('Covid danger ☠️', 'careful, keep a safe distance from others')
+
+        })()
+      }
     }
 
   }, [location, origine])

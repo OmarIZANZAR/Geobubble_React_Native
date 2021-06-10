@@ -9,12 +9,13 @@ import {
     TouchableOpacity,
 } from 'react-native'
 
-import { AntDesign } from '@expo/vector-icons'
 import { 
     TimePickers, 
     AreaDiameterPicker, 
     SafeAreasList 
 } from '../components'
+
+import { AntDesign } from '@expo/vector-icons'
 
 const Settings = ({ navigation }) => {
     return (
@@ -36,7 +37,7 @@ const Settings = ({ navigation }) => {
                 </View>
 
                 <View style={styles.foot}>
-                    <Text style={styles.footText}>By Omar izanzar</Text>
+                    <Text style={styles.footText}>By JoyCodes</Text>
                 </View>
             </View>
 

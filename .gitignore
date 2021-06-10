@@ -12,7 +12,4 @@ web-build/
 # macOS
 .DS_Store
 
-Main.js
-pubnub.txt
-pusher.txt
-step.txt
+*.txt

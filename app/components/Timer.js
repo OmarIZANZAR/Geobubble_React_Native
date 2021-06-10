@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { Actions } from '../../state'
-
 import { fireNotification } from '../../functions/notification'
 
 const Timer = () => {
@@ -32,21 +31,21 @@ const Timer = () => {
 
                 } else if( now === cat ){
 
-                    await fireNotification('Curfew time reminder', 'hey, curfew time is almost here ⏰')
-
                     dispatch({
                         type: Actions.OPEN_MODAL,
                         payload: { activeType: 'curfewReminder' }
                     })
 
-                } else if( now === ct ){
+                    await fireNotification('Curfew time reminder', 'hey, curfew time is almost here ⏰')
 
-                    await fireNotification('Curfew time', 'hey, curfew time is here ☠️ go home')
+                } else if( now === ct ){
 
                     dispatch({
                         type: Actions.OPEN_MODAL,
                         payload: { activeType: 'curfewTime' }
                     })
+
+                    await fireNotification('Curfew time', 'hey, curfew time is here ☠️ go home')
 
                 }
             })()
