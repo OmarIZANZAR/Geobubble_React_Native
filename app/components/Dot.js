@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
+import { getDistance } from 'geolib'
 import { 
     Animated,
     View,
@@ -10,7 +11,6 @@ import {
 } from "react-native";
 
 import { Actions } from '../../state'
-import { getDistance } from 'geolib'
 import { fireNotification } from '../../functions/notification'
 
 if (

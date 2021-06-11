@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { View, StyleSheet } from 'react-native'
 import * as Location from 'expo-location'
-import { Actions } from '../../state'
-import { Dot } from '../components'
-
 import io from 'socket.io-client/dist/socket.io'
 import uuid from 'react-native-uuid'
 
+import { Actions } from '../../state'
+import { Dot } from '../components'
+
 const ID = uuid.v4()
+const SERVER_URL = 'http://192.168.1.114:3000'
 
 const RadarScreen = () => {
     const { currentLocation } = useSelector( state => state.locator )
@@ -16,7 +17,7 @@ const RadarScreen = () => {
     const [locations, setLocations] = useState([])
 
     useEffect(() => {
-        const socket = io('http://192.168.1.114:3000', {
+        const socket = io( SERVER_URL, {
             transports: ['websocket'],
             jsonp: false
         });
@@ -37,10 +38,8 @@ const RadarScreen = () => {
         })
 
         socket.on('location-change', data => {
-            console.log("DATA RECIEVED FROM: ", ID)
-
+            // console.log("DATA RECIEVED FROM: ", ID)
             setLocations([ ...locations, data ])
-
         })
     }, [])
 

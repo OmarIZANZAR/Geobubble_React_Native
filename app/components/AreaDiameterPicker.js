@@ -69,10 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     inputSelectorText: {
-        // width: '100%',
-        // minWidth: '70%',
         height: '100%',
-        // backgroundColor: '#888',
         borderRadius: 20,
         fontSize: 18,
         fontWeight: '700',

@@ -8,8 +8,7 @@ import {
     TouchableOpacity,
 } from 'react-native'
 
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { Actions } from '../../state'
 

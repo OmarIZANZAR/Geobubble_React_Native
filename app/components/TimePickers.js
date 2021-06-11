@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import moment from 'moment'
 import DateTimePicker from '@react-native-community/datetimepicker'
+import moment from 'moment'
 import { 
     StyleSheet, 
     Text, 

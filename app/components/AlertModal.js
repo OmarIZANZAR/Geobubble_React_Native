@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Audio } from 'expo-av'
 import { 
     StyleSheet, 
     Text, 
@@ -10,10 +11,7 @@ import {
 } from 'react-native'
 
 import { Actions } from '../../state'
-
 import { maskImg, timerImg, warningImg, distanceImg } from '../../assets'
-
-import { Audio } from 'expo-av'
 
 const AlertModal = () => {
     const { isVisible, activeType } = useSelector(state => state.modal)
