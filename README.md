@@ -22,8 +22,6 @@ Install dependencies.
 Run the server.
 `npm start` 
 
-> Happy Hacking
-
 #### Documentations
 [Expo](https://docs.expo.io/)
 [React Native](https://reactnative.dev/docs/getting-started)
@@ -35,3 +33,5 @@ Run the server.
 [Geolib](https://www.npmjs.com/package/geolib)
 [Moment js](https://momentjs.com/)
 [Express js](http://expressjs.com/en/4x/api.html)
+
+__*Happy Hacking*__
