@@ -2,7 +2,8 @@
 Geobubble is a React Native app made with expo, it uses geolocation data to remind uders to keep a safe distance from other people that use the app, more to be found after you run the app.
 
 #### Setup
-To run the mobile app.
+##### To run the mobile app.
+___
 
 First you will need to install expo CLI, if you don't have it.
 `npm install --global expo-cli`
@@ -15,7 +16,8 @@ Then open the file RadarScreen.js in the /app/components folder and change the c
 And finaly run the app.
 `npm start`
 
-To run the backend server.
+##### To run the backend server.
+___
 
 Navigate to folder Geobubble-backend
 `cd Geobubble-backend`
