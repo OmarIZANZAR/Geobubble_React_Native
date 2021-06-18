@@ -11,11 +11,12 @@ const Footer = () => {
     const dispatch = useDispatch()
 
     function addSafeArea() {
-        console.log(currentLocation)
-        dispatch({
-            type: Actions.SET_SAFE_AREA,
-            payload: { location: currentLocation }
-        })
+        if(currentLocation){     
+            dispatch({
+                type: Actions.SET_SAFE_AREA,
+                payload: { location: currentLocation }
+            })
+        }
     }
 
     return (

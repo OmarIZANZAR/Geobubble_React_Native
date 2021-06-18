@@ -8,6 +8,7 @@ import { fireNotification } from '../../functions/notification'
 
 const Timer = () => {
     const { currentTime } = useSelector( state => state.timer )
+    const { appIsSilent, appIsOff } = useSelector( state => state.appConfig )
     const { 
         curfewTime, 
         curfewAlertTime, 
@@ -23,32 +24,39 @@ const Timer = () => {
         const interval = setInterval(() => {
             let time = new Date();
             let now = moment(time).format('HH:mm:ss');
-
-            (async () => {
-                if( now === car ){
-                    
-                    await fireNotification('Curfew time reminder', 'hey, curfew time is almost here ⏰')
-
-                } else if( now === cat ){
-
-                    dispatch({
-                        type: Actions.OPEN_MODAL,
-                        payload: { activeType: 'curfewReminder' }
-                    })
-
-                    await fireNotification('Curfew time reminder', 'hey, curfew time is almost here ⏰')
-
-                } else if( now === ct ){
-
-                    dispatch({
-                        type: Actions.OPEN_MODAL,
-                        payload: { activeType: 'curfewTime' }
-                    })
-
-                    await fireNotification('Curfew time', 'hey, curfew time is here ☠️ go home')
-
-                }
-            })()
+            
+            if( !appIsOff ){
+                (async () => {
+                    if( now === car ){
+                        
+                        await fireNotification('Curfew time reminder', 'hey, curfew time is almost here ⏰')
+    
+                    } else if( now === cat ){
+    
+                        if( !appIsSilent ){
+                            dispatch({
+                                type: Actions.OPEN_MODAL,
+                                payload: { activeType: 'curfewReminder' }
+                            })
+                        }
+    
+                        await fireNotification('Curfew time reminder', 'hey, curfew time is almost here ⏰')
+    
+                    } else if( now === ct ){
+    
+                        if( !appIsSilent ){
+                            
+                            dispatch({
+                                type: Actions.OPEN_MODAL,
+                                payload: { activeType: 'curfewTime' }
+                            })
+                        }
+    
+                        await fireNotification('Curfew time', 'hey, curfew time is here ☠️ go home')
+    
+                    }
+                })()
+            }
 
             dispatch({
                 type: Actions.SET_CURRENT_TIME,
@@ -57,7 +65,7 @@ const Timer = () => {
 
             return () => clearInterval( interval )
         }, 1000);
-    }, [curfewTime, curfewAlertTime])
+    }, [curfewTime, curfewAlertTime, appIsSilent, appIsOff])
 
     return (
         <View style={styles.timer}>

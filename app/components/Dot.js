@@ -22,7 +22,8 @@ if (
 
 const Dot = ({ location, origine }) => {
   const [position, setPosition] = useState(null)
-  const { modal } = useSelector( state => state )
+  const { appIsSilent, appIsOff, carModeIsOn } = useSelector( state => state.appConfig )
+  const { modal, locationSettings } = useSelector( state => state )
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -65,7 +66,6 @@ const Dot = ({ location, origine }) => {
     )
 
     const MAX_DISTANCE = 10
-    const MIN_DISTANCE = 2
     const SCREEN_RADIUS = 180
     const RATIO = MAX_DISTANCE / SCREEN_RADIUS // m/px
 
@@ -94,22 +94,26 @@ const Dot = ({ location, origine }) => {
       setPosition({ x: x , y: y })
     }
 
-    if( R < MIN_DISTANCE && false ) {
-      if( !modal.isVisible ){
-        ( async () => {
-
-          dispatch({
-              type: Actions.OPEN_MODAL,
-              payload: { activeType: 'distance' }
-          })
-
-          await fireNotification('Covid danger ☠️', 'careful, keep a safe distance from others')
-
-        })()
+    if( !(carModeIsOn || appIsOff) ){
+      if( R < locationSettings.safeDistance && false ) {
+        if( !modal.isVisible ){
+          ( async () => {
+  
+            if( !appIsSilent ){
+              dispatch({
+                type: Actions.OPEN_MODAL,
+                payload: { activeType: 'distance' }
+              })
+            }
+              
+            await fireNotification('Covid danger ☠️', 'careful, keep a safe distance from others')
+  
+          })()
+        }
       }
     }
 
-  }, [location, origine])
+  }, [location, origine, carModeIsOn, appIsOff, appIsSilent, locationSettings.safeDistance])
 
   if(position) {
     return (

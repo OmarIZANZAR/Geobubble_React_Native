@@ -85,29 +85,29 @@ export default ( state, { type, payload }) => {
             let newArea = {
                 isHome: false,
                 location: payload.location,
-                areaDiameter: state.location.safeAreaDiameter,
+                areaDiameter: state.locationSettings.safeAreaDiameter,
             }
             return {
                 ...state,
-                location: {
-                    ...state.location,
-                    safeAreas: [...state.location.safeAreas, newArea ]
+                locationSettings: {
+                    ...state.locationSettings,
+                    safeAreas: [...state.locationSettings.safeAreas, newArea ]
                 }
             };
 
         case Actions.UNSET_SAFE_AREA:
-            let newSafeAreas = state.location.safeAreas.filter( (area, id) => id !== payload.areaId )
+            let newSafeAreas = state.locationSettings.safeAreas.filter( (area, id) => id !== payload.areaId )
 
             return {
                 ...state,
-                location: {
-                    ...state.location,
+                locationSettings: {
+                    ...state.locationSettings,
                     safeAreas: newSafeAreas,
                 }
             };
 
         case Actions.TOGGLE_IS_HOME:
-            let updatedSafeAreas = state.location.safeAreas.map( (area, id) => {
+            let updatedSafeAreas = state.locationSettings.safeAreas.map( (area, id) => {
                 if( id === payload.areaId ){
                     return {
                         isHome: !area.isHome,
@@ -121,8 +121,8 @@ export default ( state, { type, payload }) => {
 
             return {
                 ...state,
-                location: {
-                    ...state.location,
+                locationSettings: {
+                    ...state.locationSettings,
                     safeAreas: updatedSafeAreas,
                 }
             };
@@ -133,6 +133,15 @@ export default ( state, { type, payload }) => {
                 location: {
                     ...state.location,
                     safeAreaDiameter: payload.safeAreaDiameter
+                }
+            };
+
+        case Actions.SET_SAFE_DISTANCE:
+            return {
+                ...state,
+                location: {
+                    ...state.location,
+                    safeDistance: payload.safeDistance
                 }
             };
 

@@ -6,7 +6,7 @@ import io from 'socket.io-client/dist/socket.io'
 import uuid from 'react-native-uuid'
 
 import { Actions } from '../../state'
-import { Dot } from '../components'
+import { Dot } from './Dot'
 
 const ID = uuid.v4()
 const SERVER_URL = 'http://192.168.1.114:3000'

@@ -13,7 +13,7 @@ import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons'
 import { Actions } from '../../state'
 
 const SafeAreasList = () => {
-    const { safeAreas } = useSelector(state => state.location)
+    const { safeAreas } = useSelector(state => state.locationSettings)
     const dispatch = useDispatch()
 
     const toggleIsHome = (id) => {

@@ -10,15 +10,15 @@ import {
 
 import { Actions } from '../../state'
 
-const AreaDiameterPicker = () => {
+const SafeDistancePicker = () => {
     const inputRef = useRef()
-    const { safeAreaDiameter } = useSelector(state => state.locationSettings)
+    const { safeDistance } = useSelector(state => state.locationSettings)
     const dispatch = useDispatch()
 
     const onChangeText = (text) => {
         dispatch({ 
-            type: Actions.SET_SAFE_AREA_DIAMETER, 
-            payload: { safeAreaDiameter: text },
+            type: Actions.SET_SAFE_DISTANCE, 
+            payload: { safeDistance: text },
         })
     }
 
@@ -28,7 +28,7 @@ const AreaDiameterPicker = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.inputText}>Set safe area diameter (m):</Text>
+            <Text style={styles.inputText}>Set safe distance (m):</Text>
             <Pressable 
                 style={styles.inputSelector}
                 onPress={focusInput}
@@ -37,7 +37,7 @@ const AreaDiameterPicker = () => {
                     ref={inputRef}
                     style={styles.inputSelectorText}
                     onChangeText={onChangeText}
-                    value={ `${safeAreaDiameter}` }
+                    value={ `${safeDistance}` }
                     keyboardType="numeric"
                 />
             </Pressable>
@@ -76,5 +76,5 @@ const styles = StyleSheet.create({
     },
 })
 
-export default AreaDiameterPicker
+export default SafeDistancePicker
 

@@ -6,6 +6,7 @@ import AlertModal from './AlertModal'
 import TimePickers from './TimePickers'
 import AreaDiameterPicker from './AreaDiameterPicker'
 import SafeAreasList from './SafeAreasList'
+import SafeDistancePicker from './SafeDistancePicker'
 
 export { 
     Header, 
@@ -15,5 +16,6 @@ export {
     AlertModal, 
     TimePickers,
     AreaDiameterPicker,
+    SafeDistancePicker,
     SafeAreasList,
 }

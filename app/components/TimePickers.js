@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import moment from 'moment'
 import { 
     StyleSheet, 
     Text, 
-    View, 
-    Button, 
+    View,
     TouchableOpacity,
     Platform,
 } from 'react-native'
@@ -22,6 +21,7 @@ const TimePickers = () => {
 
     const onChange1 = (event, selectedTime) => {
         const currentTime = selectedTime || curfewTime
+        if(!currentTime) return
 
         const hpt = moment( currentTime ).subtract(30, 'minutes')
         const halfpastTime = new Date( hpt )
@@ -43,6 +43,7 @@ const TimePickers = () => {
 
     const onChange2 = (event, selectedTime) => {
         const currentTime = selectedTime || curfewAlertTime
+        if(!currentTime) return
 
         const fpt = moment( currentTime ).subtract(5, 'minutes')
         const fivepastTime = new Date( fpt )
@@ -94,7 +95,7 @@ const TimePickers = () => {
             { show1 && (
                 <DateTimePicker
                     testID="dateTimePicker1"
-                    value={ curfewTime || new Date() }
+                    value={new Date()}
                     mode="time"
                     is24Hour={true}
                     display="default"
@@ -105,7 +106,7 @@ const TimePickers = () => {
             { show2 && (
                 <DateTimePicker
                     testID="dateTimePicker2"
-                    value={ curfewAlertTime || new Date() }
+                    value={new Date()}
                     mode="time"
                     is24Hour={true}
                     display="default"
@@ -128,14 +129,14 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
     },
     inputText: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '600',
     },
     inputSelector: {
         backgroundColor: '#fff',
         width: 80,
         height: 60,
-        marginLeft: 10,
+        marginLeft: 5,
         borderRadius: 20,
         borderColor: '#e2f3f5',
         borderWidth: 5,

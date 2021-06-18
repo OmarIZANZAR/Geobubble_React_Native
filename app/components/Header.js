@@ -4,6 +4,8 @@ import { View, TouchableHighlight, StyleSheet } from 'react-native';
 
 import Timer from './Timer'
 
+import { setupLocation } from '../../functions/location';
+
 const Header = ({ navigation }) => {
     return (
         <View style={styles.container}>
@@ -20,7 +22,7 @@ const Header = ({ navigation }) => {
             <TouchableHighlight 
                 underlayColor='#ffd9d9'
                 style={styles.button}
-                onPress={() => alert('refresh position')}
+                onPress={() => setupLocation()}
             >
                 <MaterialIcons name="my-location" size={35} color="black" />
                 

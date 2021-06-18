@@ -1,10 +1,10 @@
 import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
 import Store from './state/store';
+import * as Notifications from 'expo-notifications';
 import { Provider } from 'react-redux';
 import { NavigationContainer }  from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import * as Notifications from 'expo-notifications';
 
 import { Home, Settings } from './app/screens';
 import { AlertModal } from './app/components';
@@ -26,7 +26,7 @@ export default function App() {
 
   useEffect(() => {
     setupNotifications()
-    setupLocation()    
+    setupLocation()
   }, [])
 
   return (
@@ -34,6 +34,7 @@ export default function App() {
       <Provider store={Store}>
 
         <AlertModal />
+
         <Tab.Navigator initialRouteName='Home'
           sceneContainerStyle={{ backgroundColor: '#fff' }}
           tabBar={() => <></>}

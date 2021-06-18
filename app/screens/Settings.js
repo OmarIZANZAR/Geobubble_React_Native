@@ -11,7 +11,8 @@ import {
 
 import { 
     TimePickers, 
-    AreaDiameterPicker, 
+    AreaDiameterPicker,
+    SafeDistancePicker, 
     SafeAreasList 
 } from '../components'
 
@@ -21,6 +22,7 @@ const Settings = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.mainContainer}>
             <View style={styles.container}>
+
                 <View style={styles.head}>
                     <TouchableOpacity style={styles.headBtn}
                         onPress={() => navigation.navigate('Home')}
@@ -32,6 +34,7 @@ const Settings = ({ navigation }) => {
         
                 <View style={styles.forms}> 
                     <TimePickers />
+                    <SafeDistancePicker />
                     <AreaDiameterPicker />
                     <SafeAreasList />
                 </View>
@@ -39,6 +42,7 @@ const Settings = ({ navigation }) => {
                 <View style={styles.foot}>
                     <Text style={styles.footText}>By JoyCodes</Text>
                 </View>
+                
             </View>
 
         </SafeAreaView>
