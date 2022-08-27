@@ -42,7 +42,7 @@ Run the server.
 
 ---
 the home page:
-![p1](https://user-images.githubusercontent.com/64851783/187041678-1da621a5-5486-4203-b35e-524ab88ebbea.jpg)
+![p1](https://user-images.githubusercontent.com/64851783/187041678-1da621a5-5486-4203-b35e-524ab88ebbea.jpg | width=200)
 
 Settings page:
 ![p2](https://user-images.githubusercontent.com/64851783/187041686-4905201d-0121-411a-aa85-787be43c23e5.jpg)
