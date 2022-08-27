@@ -40,4 +40,17 @@ Run the server.
 [Moment js](https://momentjs.com/)
 [Express js](http://expressjs.com/en/4x/api.html)
 
+---
+the home page:
+![p1](https://user-images.githubusercontent.com/64851783/187041678-1da621a5-5486-4203-b35e-524ab88ebbea.jpg)
+
+Settings page:
+![p2](https://user-images.githubusercontent.com/64851783/187041686-4905201d-0121-411a-aa85-787be43c23e5.jpg)
+
+Alert modal:
+ ![p3](https://user-images.githubusercontent.com/64851783/187041693-da27587d-ca47-4eb9-939d-275a4a745a32.jpg)
+
+Notification:
+![p4](https://user-images.githubusercontent.com/64851783/187041696-a4bdc3de-4372-4758-aab7-eeb787959bfb.jpg)
+
 __*Happy Hacking*__
